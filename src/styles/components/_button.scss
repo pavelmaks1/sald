@@ -1,0 +1,19 @@
+.button {
+  background: $terracot;
+  color: white;
+  display: inline-block;
+  border: none;
+  font-weight: 300;
+  line-height: 1;
+  font-size: $font-size-large;
+  text-decoration: none;
+  padding: $s-size;
+}
+
+.button-success {
+  background: $light-green;
+}
+
+.button-danger {
+  background: $terracot;
+}
