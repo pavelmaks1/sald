@@ -51,6 +51,29 @@ export const setPosts = (posts) => ({
   posts
 });
 
+export const startSetAllPosts = () => {
+  return (dispatch, getState) => {
+    return database.ref(`users`).once('value').then(
+      (snapshot) => {
+        const posts = [];
+        
+        snapshot.forEach( element => {
+          element.forEach(userPosts => {
+            userPosts.forEach(post => {
+              console.log(post.val());
+              posts.push({
+                id: post.key,
+                ...post.val()
+              })
+            })
+          })
+        })
+        dispatch(setPosts(posts));
+      }
+    )
+  }
+}
+
 export const startSetPosts = () => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;

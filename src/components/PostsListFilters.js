@@ -42,7 +42,10 @@ export class PostsListFilters extends React.Component {
             </select>
           </div>
         </div>
-        <Link className="button button-add" to="/create">Add new</Link>
+        {
+          this.props.isAuthenticated &&
+          <Link className="button button-add" to="/create">Add new</Link>
+        }
 
       </div>
     )
@@ -50,7 +53,8 @@ export class PostsListFilters extends React.Component {
 };
 
 const mapStateToProps = (state) => ({
-  filters: state.filters
+  filters: state.filters,
+  isAuthenticated: !!state.auth.uid
 });
 
 const mapDispatchToProps = (dispatch) => ({

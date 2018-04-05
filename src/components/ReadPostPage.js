@@ -3,9 +3,15 @@ import { connect } from 'react-redux';
 
 const ReadPostPage = (props) => (
   <div>
-    {console.log(props)}
-    <h1>{props.post.description}</h1>
-    <p>{props.post.note}</p>
+    <div className="page-header">
+      <div className="content-container">
+        <h1>{props.post.description}</h1>
+
+      </div>
+    </div>
+    <div className="content-container">
+      <p>{props.post.note}</p>
+    </div>
   </div>
 );
 

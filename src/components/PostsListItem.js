@@ -9,7 +9,7 @@ const PostsListItem = ({ id, description, createdAt, isAuthenticated, note }) =>
     <Link className="list-item" to={`${actionName}/${id}`} >
       <div>
         <h3 className="list-item__title">{description}</h3>
-        <span className="list-item__subtitle">{note}</span>
+        <span className="list-item__subtitle list-item__subtitle--note">{note}</span>
       </div>
     </Link >
   );
