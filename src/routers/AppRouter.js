@@ -1,16 +1,14 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
-import Header from '../components/Header';
-import AddPostPage from '../components/AddPostPage';
-import EditPostPage from '../components/EditPostPage';
-import PostsDashboardPage from '../components/PostsDashboardPage';
-import LoginPage from '../components/LoginPage';
-import HelpPage from '../components/HelpPage';
-import NotFoundPage from '../components/NotFoundPage';
+import Header from '../components/layouts/Header';
+import AddPostPage from '../components/posts/AddPostPage';
+import EditPostPage from '../components/posts/EditPostPage';
+import PostsDashboardPage from '../components/posts/PostsDashboardPage';
+import LoginPage from '../components/users/LoginPage';
 import createHistory from 'history/createBrowserHistory';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import ReadPostPage from '../components/ReadPostPage';
+import ReadPostPage from '../components/posts/ReadPostPage';
 
 export const history = createHistory();
 

@@ -12,13 +12,15 @@ export const startAddPost = (postData = {}) => {
     const {
       description = '',
       note = '',
-      amount = 0,
-      createdAt = 0
+      createdAt = 0,
+      comments = [],
+      author_id = uid
     } = postData;
-    const post = { description, note, amount, createdAt };
+    const post = { description, note, comments, createdAt };
 
-    return database.ref(`users/${uid}/posts`).push(post).then((ref) => {
+    return database.ref(`posts`).push(post).then((ref) => {
       dispatch(addPost({
+        author_id: uid,
         id: ref.key,
         ...post
       }));
@@ -40,7 +42,7 @@ export const editPost = (id, updates) => ({
 export const startEditPost = (id, updates) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    return database.ref(`users/${uid}/posts/${id}`).update(updates).then(() => {
+    return database.ref(`posts/${id}`).update(updates).then(() => {
       dispatch(editPost(id, updates));
     });
   };
@@ -53,21 +55,17 @@ export const setPosts = (posts) => ({
 
 export const startSetAllPosts = () => {
   return (dispatch, getState) => {
-    return database.ref(`users`).once('value').then(
+    return database.ref(`posts`).once('value').then(
       (snapshot) => {
         const posts = [];
         
-        snapshot.forEach( element => {
-          element.forEach(userPosts => {
-            userPosts.forEach(post => {
-              console.log(post.val());
-              posts.push({
-                id: post.key,
-                ...post.val()
-              })
-            })
-          })
-        })
+        snapshot.forEach(element => {
+          posts.push({
+            id: element.key,
+            ...element.val()
+          });
+        });
+
         dispatch(setPosts(posts));
       }
     )

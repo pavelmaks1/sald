@@ -8,9 +8,9 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import { firebase } from './firebase/firebase';
 import configureStore from './store/configureStore';
-import { LoadingPage } from './components/LoadingPage';
+import { LoadingPage } from './components/layouts/LoadingPage';
 
-const store = configureStore();
+export const store = configureStore();
 
 const jsx = (
   <Provider store={store}>

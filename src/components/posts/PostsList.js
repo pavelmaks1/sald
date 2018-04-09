@@ -1,5 +1,5 @@
 import React from 'react';
-import selectPosts from '../selectors/posts';
+import selectPosts from '../../selectors/posts';
 import PostsListItem from './PostsListItem';
 import { connect } from 'react-redux';
 

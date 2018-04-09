@@ -1,17 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PostForm from './PostForm';
-import { startEditPost, startRemovePost } from '../actions/posts';
+import { startEditPost, startRemovePost } from '../../actions/posts';
 import { Link } from 'react-router-dom';
+import CommentsList from '../comments/CommentsList';
 
 export class EditPostPage extends React.Component {
   onSubmit = (post) => {
     this.props.startEditPost(this.props.post.id, post);
-    this.props.history.push('/');
+    this.props.history.push('/dashboard');
   };
   onRemove = () => {
     this.props.startRemovePost({ id: this.props.post.id });
-    this.props.history.push('/');
+    this.props.history.push('/dashboard');
   };
 
   render() {
@@ -36,6 +37,8 @@ export class EditPostPage extends React.Component {
             />
           </div>
         </div>
+        <PostCommentsList postId={this.props.post.id} />
+
       </div>
     );
   };

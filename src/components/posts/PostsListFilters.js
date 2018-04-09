@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setTextFilter, sortByDate, sortByAmount } from '../actions/filters';
+import { setTextFilter, searchInTitle, searchInText } from '../../actions/filters';
 import { Link } from 'react-router-dom';
 
 export class PostsListFilters extends React.Component {
@@ -11,10 +11,10 @@ export class PostsListFilters extends React.Component {
     this.props.setTextFilter(e.target.value);
   };
   onSortChange = (e) => {
-    if (e.target.value === 'date') {
-      this.props.sortByDate();
-    } else if (e.target.value === 'amount') {
-      this.props.sortByAmount();
+    if (e.target.value === 'title') {
+      this.props.searchInTitle();
+    } else if (e.target.value === 'text') {
+      this.props.searchInText();
     }
   };
 
@@ -26,7 +26,7 @@ export class PostsListFilters extends React.Component {
             <input
               type="text"
               className="text-input"
-              placeholder="Search expenses"
+              placeholder="Search posts"
               value={this.props.filters.text}
               onChange={this.onTextChange}
             />
@@ -37,8 +37,8 @@ export class PostsListFilters extends React.Component {
               value={this.props.filters.sortBy}
               onChange={this.onSortChange}
             >
-              <option value="date">Date</option>
-              <option value="amount">Amount</option>
+              <option value="title">Title</option>
+              <option value="text">Text</option>
             </select>
           </div>
         </div>
@@ -59,8 +59,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setTextFilter: (text) => dispatch(setTextFilter(text)),
-  sortByDate: () => dispatch(sortByDate()),
-  sortByAmount: () => dispatch(sortByAmount()),
+  searchInTitle: () => dispatch(searchInTitle()),
+  searchInText: () => dispatch(searchInText()),
 
 });
 

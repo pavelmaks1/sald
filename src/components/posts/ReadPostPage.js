@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import CommentsList from '../comments/CommentsList';
+import AddComment from '../comments/AddComment';
 
 const ReadPostPage = (props) => (
   <div>
@@ -12,10 +14,15 @@ const ReadPostPage = (props) => (
     <div className="content-container">
       <p>{props.post.note}</p>
     </div>
+    <div className="content-container">
+      {props.isAuthenticated && <AddPostComment postId={props.post.id} />}
+      <PostCommentsList postId={props.post.id} />
+    </div>
   </div>
 );
 
 const mapStateToProps = (state, props) => ({
+  isAuthenticated: !!state.auth.uid,
   post: state.posts.find((post) => post.id === props.match.params.id)
 })
 

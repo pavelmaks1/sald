@@ -1,19 +1,18 @@
 import moment from 'moment';
 
 
-export default (posts, { text, sortBy, startDate, endDate }) => {
+export default (posts, { text, sortBy }) => {
   return posts.filter((post) => {
-    const createdAtMoment = moment(post.createdAt);
-    const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, 'day') : true;
-    const endDateMatch = endDate ? endDate.isSameOrAfter(createdAtMoment, 'day') : true;
-    const textMatch = post.description.toLowerCase().includes(text.toLowerCase());
-
-    return startDateMatch && endDateMatch && textMatch;
-  }).sort((a, b) => {
-    if (sortBy === 'date') {
-      return a.createdAt < b.createdAt ? 1 : -1;
-    } else if (sortBy === 'amount') {
-      return a.amount < b.amount ? 1 : -1;
+    console.log(sortBy);
+    let textMatch = false;
+    if (sortBy === 'title') {
+      textMatch = post.description.toLowerCase().includes(text.toLowerCase());
+      
+    } else if (sortBy === 'text') {
+      textMatch = post.note.toLowerCase().includes(text.toLowerCase());      
     }
+    console.log(textMatch);
+
+    return  textMatch;
   });
 };
