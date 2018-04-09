@@ -15,8 +15,8 @@ const ReadPostPage = (props) => (
       <p>{props.post.note}</p>
     </div>
     <div className="content-container">
-      {props.isAuthenticated && <AddPostComment postId={props.post.id} />}
-      <PostCommentsList postId={props.post.id} />
+      {props.isAuthenticated && <AddComment postId={props.post.id} />}
+      <CommentsList postId={props.post.id} />
     </div>
   </div>
 );

@@ -37,7 +37,7 @@ export class EditPostPage extends React.Component {
             />
           </div>
         </div>
-        <PostCommentsList postId={this.props.post.id} />
+        <CommentsList postId={this.props.post.id} />
 
       </div>
     );
