@@ -11,6 +11,10 @@
 
 }
 
+.button--link {
+  background: none;
+}
+
 .button-success {
   background: $light-green;
 }
@@ -28,4 +32,8 @@
 
 .icon {
   padding: 0 0 0 $s-size;
+}
+
+.icon--beside {
+  padding: 0 0 0 $xxs-size;
 }

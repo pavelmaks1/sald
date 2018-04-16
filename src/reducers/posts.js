@@ -22,6 +22,15 @@ const postsReducer = (state = postsReducerDefaultState, action) => {
           return post;
         }
       });
+    case 'UPDATE_NAME':
+      return state.map((post) => {
+        if (post.author_id === action.id && post.author_name !== action.updates.name) {
+          return {
+            ...post,
+            ...action.updates
+          }
+        }
+      })
 
     case 'SET_POSTS':
       return action.posts;

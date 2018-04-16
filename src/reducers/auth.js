@@ -24,6 +24,11 @@ export default (state = initialState, action) => {
         ...state,
         error: action.error.message
       };
+    case 'UPDATE_USER':
+      return {
+        ...state,
+        ...action.name
+      };
     default:
       return state;
   }

@@ -9,11 +9,11 @@ const LoginPage = ({ startLogin, isAuthenticated, user }) => (
     {console.log(user)}
     {
       isAuthenticated ?
-        ( <button className="button button-success" onClick={startLogin}>Log in</button>)
-        :
         ( <Redirect to="/dashboard" />)
+        :
+        ( <button className="button button-success" onClick={startLogin}>Log in</button>)
     }
-    }
+    
   </div>
 );
 

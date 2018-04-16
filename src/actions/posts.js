@@ -19,7 +19,7 @@ export const startAddPost = (postData = {}) => {
       author_name = name
     } = postData;
     const post = { description, note, createdAt, author_name, author_id };
-    
+
     return database.ref(`posts`).push(post).then((ref) => {
       dispatch(addPost({
         id: ref.key,
@@ -67,7 +67,7 @@ export const startSetAllPosts = () => {
     return database.ref(`posts`).once('value').then(
       (snapshot) => {
         const posts = [];
-        
+
         snapshot.forEach(element => {
           posts.push({
             id: element.key,
@@ -80,6 +80,25 @@ export const startSetAllPosts = () => {
     )
   }
 }
+
+export const updateName = (id, updates) => ({
+  type: 'UPDATE_NAME',
+  updates
+});
+
+export const startUpdateName = (updates) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref('posts').on('value', (snapshot) => {
+      snapshot.forEach(element => {
+        if (element.val().author_id === uid) {
+          element.ref.update(updates);
+          dispatch(updateName(uid, updates));
+        }
+      })
+    })
+  }
+};
 
 // export const startSetPosts = () => {
 //   return (dispatch, getState) => {

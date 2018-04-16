@@ -16,7 +16,7 @@ const ReadPostPage = (props) => (
     </div>
     <div className="content-container">
       <p className="author">
-        {props.author_name}
+        {props.post.author_name}
       </p>
     </div>
     <div className="content-container">
@@ -28,7 +28,6 @@ const ReadPostPage = (props) => (
 
 const mapStateToProps = (state, props) => ({
   isAuthenticated: !!state.auth.uid,
-  author_name: state.auth.name,
   post: state.posts.find((post) => post.id === props.match.params.id)
 })
 

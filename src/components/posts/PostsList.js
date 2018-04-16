@@ -25,10 +25,8 @@ export const PostsList = (props) => (
   </div>
 );
 
-const mapStateToProps = (state) => {
-  return {
-    posts: selectPosts(state.posts, state.filters)
-  }
-}
+const mapStateToProps = (state) => ({
+  posts: selectPosts(state.posts, state.filters)
+});
 
 export default connect(mapStateToProps)(PostsList);

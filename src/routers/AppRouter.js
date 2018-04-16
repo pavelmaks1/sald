@@ -9,6 +9,7 @@ import createHistory from 'history/createBrowserHistory';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import ReadPostPage from '../components/posts/ReadPostPage';
+import AuthProfile from '../components/auth/AuthProfile';
 
 export const history = createHistory();
 
@@ -21,6 +22,7 @@ const AppRouter = () => (
         <PublicRoute path="/dashboard" component={PostsDashboardPage} />
         <PrivateRoute path="/create" component={AddPostPage} />
         <PrivateRoute path="/edit/:id" component={EditPostPage}  />
+        <PrivateRoute path="/profile" component={AuthProfile}  />        
       </Switch>
     </div>
   </Router>

@@ -28,29 +28,48 @@ export const authError = (error) => ({
   error
 });
 
-export const startSignUp = (email, password) => {
+export const updateUser = (name) => ({
+  type: 'UPDATE_USER',
+  name
+});
+
+export const startUpdateUser = (name) => {
   return (dispatch) => {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then((resp) => {
-        return dispatch(login());
-      })
-      .catch((error) => {
-        return dispatch(authError(error));
-      });
+    return firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        user.updateProfile({
+          displayName: name
+        })
+        dispatch(updateUser(name));
+      };
+    })
+
   }
 };
 
-export const startSignIn = (email, password) => {
-  return (dispatch) => {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((resp) => {
-      return dispatch(login());
-    })
-    .catch((error) => {
-      return dispatch(authError(error));
-    })
-  }
-};
+// export const startSignUp = (email, password) => {
+//   return (dispatch) => {
+//     firebase.auth().createUserWithEmailAndPassword(email, password)
+//       .then((resp) => {
+//         return dispatch(login());
+//       })
+//       .catch((error) => {
+//         return dispatch(authError(error));
+//       });
+//   }
+// };
+
+// export const startSignIn = (email, password) => {
+//   return (dispatch) => {
+//     firebase.auth().signInWithEmailAndPassword(email, password)
+//     .then((resp) => {
+//       return dispatch(login());
+//     })
+//     .catch((error) => {
+//       return dispatch(authError(error));
+//     })
+//   }
+// };
 
 // export const startPasswordReset = (email) => {
 //   return firebase.auth().sendPasswordResetEmail(email);
