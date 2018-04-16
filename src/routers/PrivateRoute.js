@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import Header from '../components/layouts/Header';
-
+import Footer from '../components/layouts/Footer';
 // destructuring props 
 export const PrivateRoute = ({
   isAuthenticated,
@@ -14,6 +14,7 @@ export const PrivateRoute = ({
         <div>
           <Header />
           <Component {...props} />
+          <Footer />
         </div>
       ) : (
           <Redirect to="/" />

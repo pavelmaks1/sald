@@ -1,11 +1,13 @@
 .header {
-  background: $light-blue;
+  background: $dark-grey;
 }
 
 .header__title {
   color: white;
+  display: flex;
   text-decoration: none;
   h1 {
+    font-size: $xl-size;
     margin: 0;
   }
 }
@@ -15,4 +17,9 @@
   display: flex;
   justify-content: space-between;
   padding: $s-size 0;
+}
+
+.header__image {
+  padding: 0 0 $s-size  0 ;
+  width: 60px;
 }

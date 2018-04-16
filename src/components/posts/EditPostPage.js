@@ -35,10 +35,10 @@ export class EditPostPage extends React.Component {
               post={this.props.post}
               onSubmit={this.onSubmit}
             />
+            <button className="button" onClick={this.onRemove}>Remove post</button>
           </div>
         </div>
         <CommentsList postId={this.props.post.id} />
-
       </div>
     );
   };

@@ -9,6 +9,7 @@ export const Header = ({ startLogout, isAuthenticated }) => {
       <div className="content-container">
         <div className="header-content">
           <Link className="header__title" to="/dashboard" >
+            <img className="header__image" src='/img/12463-chipmunk.png' alt=""/>
             <h1>Sald</h1>
           </Link>
           {isAuthenticated ? (

@@ -12,5 +12,5 @@ export default (posts, { text, sortBy }) => {
     }
 
     return  textMatch;
-  });
+  }).reverse();
 };

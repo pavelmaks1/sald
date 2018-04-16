@@ -4,7 +4,7 @@ import Header from '../components/layouts/Header';
 import AddPostPage from '../components/posts/AddPostPage';
 import EditPostPage from '../components/posts/EditPostPage';
 import PostsDashboardPage from '../components/posts/PostsDashboardPage';
-import LoginPage from '../components/users/LoginPage';
+import LoginPage from '../components/auth/LoginPage';
 import createHistory from 'history/createBrowserHistory';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';

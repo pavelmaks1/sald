@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Header from '../components/layouts/Header';
 import { Route, Redirect } from 'react-router-dom';
-
+import Footer from '../components/layouts/Footer';
 
 export const PublicRoute = (({
   isAuthenticated,
@@ -13,6 +13,7 @@ export const PublicRoute = (({
       <div>
         <Header />
         <Component {...props} />
+        <Footer />
       </div>
 
     )}

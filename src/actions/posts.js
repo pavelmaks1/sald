@@ -1,5 +1,5 @@
 import uuid from 'uuid';
-import database from '../firebase/firebase';
+import database, { name } from '../firebase/firebase';
 
 export const addPost = (post) => ({
   type: 'ADD_POST',
@@ -9,18 +9,19 @@ export const addPost = (post) => ({
 export const startAddPost = (postData = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
+    const name = getState().auth.name;
+    console.log(getState());
     const {
       description = '',
       note = '',
       createdAt = 0,
-      comments = [],
-      author_id = uid
+      author_id = uid,
+      author_name = name
     } = postData;
-    const post = { description, note, comments, createdAt };
-
+    const post = { description, note, createdAt, author_name, author_id };
+    
     return database.ref(`posts`).push(post).then((ref) => {
       dispatch(addPost({
-        author_id: uid,
         id: ref.key,
         ...post
       }));
@@ -32,6 +33,14 @@ export const removePost = ({ id } = {}) => ({
   type: 'REMOVE_POST',
   id
 });
+
+export const startRemovePost = ({ id } = {}) => {
+  return (dispatch) => {
+    return database.ref(`posts/${id}`).remove().then(() => {
+      dispatch(removePost({ id }));
+    });
+  }
+};
 
 export const editPost = (id, updates) => ({
   type: 'EDIT_POST',
@@ -72,20 +81,20 @@ export const startSetAllPosts = () => {
   }
 }
 
-export const startSetPosts = () => {
-  return (dispatch, getState) => {
-    const uid = getState().auth.uid;
-    return database.ref(`users/${uid}/posts`).once('value').then((snapshot) => {
-      const posts = [];
+// export const startSetPosts = () => {
+//   return (dispatch, getState) => {
+//     const uid = getState().auth.uid;
+//     return database.ref(`users/${uid}/posts`).once('value').then((snapshot) => {
+//       const posts = [];
 
-      snapshot.forEach(element => {
-        posts.push({
-          id: element.key,
-          ...element.val()
-        })
-      })
+//       snapshot.forEach(element => {
+//         posts.push({
+//           id: element.key,
+//           ...element.val()
+//         })
+//       })
 
-      dispatch(setPosts(posts))
-    })
-  }
-}
+//       dispatch(setPosts(posts))
+//     })
+//   }
+// }

@@ -1,0 +1,18 @@
+.footer {
+  margin: $xl-size 0 0 0;
+  height: 100px;
+  background: $dark-grey;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  padding: $s-size 0;
+}
+
+.footer__description {
+  color: orange;
+  p {
+    font-size: $m-size;
+  }
+}
