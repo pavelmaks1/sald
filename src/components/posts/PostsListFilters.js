@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setTextFilter, searchInTitle, searchInText } from '../../actions/filters';
 import { Link } from 'react-router-dom';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import faArrowAltCircleDown from '@fortawesome/fontawesome-free-solid/faArrowAltCircleDown'
 
 export class PostsListFilters extends React.Component {
 
@@ -44,7 +46,13 @@ export class PostsListFilters extends React.Component {
         </div>
         {
           this.props.isAuthenticated &&
-          <Link className="button button-add" to="/create">Add new</Link>
+          <Link
+            className="button button-default"
+            to="/create"
+          >
+            Add new
+          <FontAwesomeIcon className="icon" icon={faArrowAltCircleDown}/>
+          </Link>
         }
 
       </div>
